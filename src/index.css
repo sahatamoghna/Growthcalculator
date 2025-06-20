@@ -1,1 +1,6 @@
-@import "tailwindcss";
+/* you can leave Vite’s default or use this simple reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
