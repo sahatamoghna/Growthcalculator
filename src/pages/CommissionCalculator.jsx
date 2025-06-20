@@ -67,7 +67,6 @@ export default function CommissionCalculator() {
   const [basePay, setBasePay] = useState('')
   const [mounted, setMounted] = useState(false)
 
-  // trigger fade-in on mount
   useEffect(() => setMounted(true), [])
 
   const rates = RATES[role][region]
@@ -132,10 +131,11 @@ export default function CommissionCalculator() {
             {Object.entries(rates).map(([key, rate], i) => (
               <tr key={key} className={i % 2 === 0 ? 'even' : 'odd'}>
                 <td>{key}</td>
-                <td>{rate.toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+                <td>{rate.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
                 <td>
                   <input
                     type="number"
+                    min="0"
                     className="referral-input"
                     value={referrals[key] ?? ''}
                     onChange={e => handleReferralChange(key, e.target.value)}
@@ -143,7 +143,7 @@ export default function CommissionCalculator() {
                   />
                 </td>
                 <td>
-                  {salesCredits[key].toLocaleString(undefined,{minimumFractionDigits:2})}
+                  {salesCredits[key].toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </td>
               </tr>
             ))}
@@ -154,7 +154,7 @@ export default function CommissionCalculator() {
           <div className="summary-row total">
             <span className="summary-label">Total Sales Credits Earned:</span>
             <span className="summary-value">
-              {totalSales.toLocaleString(undefined,{minimumFractionDigits:2})} {currency}
+              {totalSales.toLocaleString(undefined, { minimumFractionDigits: 2 })} {currency}
             </span>
           </div>
 
@@ -163,6 +163,7 @@ export default function CommissionCalculator() {
             <span className="summary-value">
               <input
                 type="number"
+                min="0"
                 className="basepay-input"
                 value={basePay}
                 onChange={e => setBasePay(e.target.value)}
@@ -175,7 +176,7 @@ export default function CommissionCalculator() {
           <div className="summary-row due">
             <span className="summary-label">Commissions Due:</span>
             <span className="summary-value">
-              {commissionDue.toLocaleString(undefined,{minimumFractionDigits:2})} {currency}
+              {commissionDue.toLocaleString(undefined, { minimumFractionDigits: 2 })} {currency}
             </span>
           </div>
         </div>

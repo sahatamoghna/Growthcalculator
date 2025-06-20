@@ -290,10 +290,10 @@ body {
 }
 
 .summary-row.due .summary-value {
-  color: red;
   font-weight: 600;
   font-size: 1.1rem;
 }
+
 
 /* base-pay input matching referral style, larger font & no spinners */
 .basepay-input {
@@ -333,4 +333,27 @@ body {
 
 .reset-button:hover {
   color: var(--primary-dark);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Logout button (fixed top-right of viewport)                                  */
+/* ───────────────────────────────────────────────────────────────────────────── */
+.logout-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #e6f9e6;
+  border: 1px solid #5dbc4a;
+  color: #5dbc4a;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.2s, color 0.2s;
+}
+.logout-button:hover {
+  background: #5dbc4a;
+  color: #fff;
 }
