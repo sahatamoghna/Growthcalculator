@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sahatamoghna.github.io/growthcalc",
+  "homepage": "https://sahatamoghna.github.io/GrowthCalc",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
