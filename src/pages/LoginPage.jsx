@@ -1,8 +1,12 @@
-import { useState } from 'react'
+// src/pages/LoginPage.jsx
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Eye, EyeOff, Lock } from 'lucide-react'
 import logo from '../assets/logo.png'
+import { users } from '../data/users'
 
 export default function LoginPage({ onLogin }) {
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -10,8 +14,12 @@ export default function LoginPage({ onLogin }) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    if (username === 'payangel' && password === 'growth') {
-      onLogin()
+    const found = users.find(
+      u => u.username === username.trim() && u.password === password
+    )
+    if (found) {
+      onLogin(found)
+      navigate(`/dashboard/${found.username}`)
     } else {
       setError('Invalid username or password')
     }
@@ -20,13 +28,9 @@ export default function LoginPage({ onLogin }) {
   return (
     <div className="login-page">
       <img src={logo} alt="PayAngel" className="logo" />
-
       <div className="login-card">
         <h1 className="title">Welcome</h1>
-        <p className="subtitle">
-          Please enter your username and password
-        </p>
-
+        <p className="subtitle">Please enter your username and password</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
@@ -38,7 +42,6 @@ export default function LoginPage({ onLogin }) {
             />
             <label htmlFor="username">Username</label>
           </div>
-
           <div className="form-group">
             <input
               id="password"
@@ -56,9 +59,7 @@ export default function LoginPage({ onLogin }) {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-
           {error && <p className="error">{error}</p>}
-
           <button type="submit" className="login-button">
             <Lock size={20} style={{ marginRight: '0.5rem' }} />
             Login

@@ -1,0 +1,177 @@
+/* ─── Container ─────────────────────────────────────────────────────────────── */
+.referee-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* ─── Topbar ───────────────────────────────────────────────────────────────── */
+.referee-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.referee-topbar-title h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #111;
+}
+.referee-topbar-title p {
+  margin: 4px 0 0;
+  color: #555;
+  font-size: 16px;
+}
+/* ─── Topbar Actions (Back + Logout) ─────────────────────────────────────────── */
+.referee-topbar-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.referee-topbar-actions .logout-button {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0;
+}
+
+
+
+
+/* ─── Buttons ───────────────────────────────────────────────────────────────── */
+.logout-button,
+.referee-backbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e6f9e6;
+  border: 1px solid #5dbc4a;
+  color: #5dbc4a;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.logout-button:hover,
+.referee-backbtn:hover {
+  background: #5dbc4a;
+  color: #fff;
+}
+
+/* ─── Controls Row ─────────────────────────────────────────────────────────── */
+.referee-controls {
+  display: flex;
+  flex-wrap: nowrap;         /* never wrap */
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.search-input {
+  flex: 1;
+  min-width: 0;              /* allow shrinking */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* ─── Multi‐select ──────────────────────────────────────────────────────────── */
+.multi-select {
+  position: relative;
+  flex-shrink: 0;
+}
+.multi-select-btn {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  cursor: pointer;
+  min-width: 180px;
+  display: inline-flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.multi-select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+.multi-select-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+.multi-select-option:hover {
+  background: #f0f0f0;
+}
+.multi-select-option {
+  cursor: pointer;
+}
+
+/* ─── Table Area ───────────────────────────────────────────────────────────── */
+.referee-report-container {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+.referee-report {
+  height: 100%;
+  overflow: auto;
+}
+
+/* ─── Table ────────────────────────────────────────────────────────────────── */
+.report-table {
+  border-collapse: collapse;
+  min-width: 100%;
+  width: max-content;
+}
+.report-table th,
+.report-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  font-size: 14px;
+  text-align: center;        /* center all cells */
+}
+
+/* Freeze header rows */
+.report-table thead tr:nth-child(1) th {
+  position: sticky; top: 0;
+  background: #f7f7f7; z-index: 3;
+}
+.report-table thead tr:nth-child(2) th {
+  position: sticky; top: 32px;
+  background: #fafafa; z-index: 3;
+}
+
+/* Freeze first two columns */
+.sticky-col-1 { position: sticky; left: 0;   z-index: 2; }
+.sticky-col-2 { position: sticky; left:150px; z-index: 2; }
+.sticky-col-1, .report-table td.sticky-col-1 { width:150px;}
+.sticky-col-2, .report-table td.sticky-col-2 { width:140px;}
+
+/* Divider after each month block */
+.border-after-group { border-left:2px solid #ddd; }
+
+/* Zebra striping */
+.report-table tr:nth-child(even) { background:#fbfbfb; }

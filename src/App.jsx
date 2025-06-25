@@ -1,23 +1,53 @@
-import { useState } from 'react'
-import LoginPage from './pages/LoginPage'
-import CommissionCalculator from './pages/CommissionCalculator'
+// src/App.jsx
+import React, { useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate
+} from 'react-router-dom'
+
+import LoginPage            from './pages/LoginPage'
+import Dashboard            from './pages/Dashboard'
+import RefereePerformance   from './pages/RefereePerformance'
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  if (!isLoggedIn) {
-    return <LoginPage onLogin={() => setIsLoggedIn(true)} />
-  }
+  const [currentUser, setCurrentUser] = useState(null)
 
   return (
-    <div className="app-container">
-      <button
-        className="logout-button"
-        onClick={() => setIsLoggedIn(false)}
-      >
-        Logout
-      </button>
-      <CommissionCalculator />
-    </div>
+    <Router basename={import.meta.env.BASE_URL}>
+      <Routes>
+        <Route
+          path="/"
+          element={<LoginPage onLogin={u => setCurrentUser(u)} />}
+        />
+        <Route
+          path="/login"
+          element={<LoginPage onLogin={u => setCurrentUser(u)} />}
+        />
+
+        <Route
+          path="/dashboard/:username"
+          element={
+            <Dashboard
+              user={currentUser}
+              onLogout={() => setCurrentUser(null)}
+            />
+          }
+        />
+
+        <Route
+          path="/referee-performance"
+          element={
+            <RefereePerformance
+              user={currentUser}
+              onLogout={() => setCurrentUser(null)}
+            />
+          }
+        />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   )
 }

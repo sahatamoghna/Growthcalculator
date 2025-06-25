@@ -335,9 +335,8 @@ body {
   color: var(--primary-dark);
 }
 
-/* ───────────────────────────────────────────────────────────────────────────── */
-/* Logout button (fixed top-right of viewport)                                  */
-/* ───────────────────────────────────────────────────────────────────────────── */
+/* ─── Logout Button ──────────────────────────────────────────────────────────── */
+/* ─ Logout button (fixed top-right) ─────────────────────────────────────────── */
 .logout-button {
   position: fixed;
   top: 1rem;
@@ -357,3 +356,4 @@ body {
   background: #5dbc4a;
   color: #fff;
 }
+
