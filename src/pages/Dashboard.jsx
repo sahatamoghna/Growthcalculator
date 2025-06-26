@@ -1,4 +1,3 @@
-// src/pages/Dashboard.jsx
 import React from 'react'
 import { useParams, Navigate, useNavigate } from 'react-router-dom'
 
@@ -22,11 +21,25 @@ export default function Dashboard({ user, onLogout }) {
   }
 
   const metrics = userMetrics[username] || defaultMetrics
+  const totalCredits =
+    metrics.retailAcquisitionCredits +
+    metrics.retailConversionCredits +
+    metrics.activeAmbassadorAcquisitionCredits +
+    metrics.activeAmbassadorConversionCredits +
+    metrics.businessAcquisitionCredits +
+    metrics.businessConversionCredits
 
   return (
     <>
-      {/* Top bar (scrolls away) */}
       <div className="dashboard-topbar">
+        <div className="dashboard-topbar-left">
+          <div className="dashboard-greeting">
+            Hello, {user.username}
+          </div>
+          <div className="dashboard-total-credits">
+            Total Credits: <strong>{totalCredits.toLocaleString()}</strong>
+          </div>
+        </div>
         <div className="dashboard-topbar-actions">
           <button
             className="dashboard-button calculator"
@@ -44,8 +57,7 @@ export default function Dashboard({ user, onLogout }) {
         </div>
       </div>
 
-      {/* Overview renders immediately below the top bar */}
-      <DashboardOverview user={user} metrics={metrics} />
+      <DashboardOverview metrics={metrics} />
     </>
   )
 }

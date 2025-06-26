@@ -1,172 +1,222 @@
-/* ─── Overview Container ─────────────────────────────────────────────────── */
-.dashboard-overview {
-  padding: 0rem 3rem 2rem; /* pull up from top, extra bottom space */
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Global Reset & Base Styles                                                  */
+/* ───────────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: var(--font-base);
+  background: #f0f2f5;
+  color: #333;
 }
 
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* CSS Variables                                                               */
+/* ───────────────────────────────────────────────────────────────────────────── */
+:root {
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-radius: 1rem;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --card-hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --section-bg: #f3f4f6;
+  --section-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --section-border: #e5e7eb;
+  --green: #10B981;
+  --gray-dark: #111827;
+  --gray-med: #555;
+  --font-base: 'Inter', sans-serif;
+  --inner-card-width: 17rem;
+}
+
+/* Dashboard container */
+.dashboard-overview {
+  padding: 2rem 3rem;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Top-bar Layout                                                               */
+/* ───────────────────────────────────────────────────────────────────────────── */
 .dashboard-topbar {
   display: flex;
-  justify-content: flex-end;  /* push everything to the right */
   align-items: center;
-  position: static;           /* scrolls away with the page */
-  width: 100%;
-  margin: 1rem 0 0;           /* 2rem top, 0 bottom */
-  padding: 0.5rem 2rem;       /* some breathing room inside */
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid var(--card-border);
 }
-
+.dashboard-topbar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  margin-left: 1rem;
+}
+.dashboard-greeting {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gray-dark);
+  text-align: center;
+}
+.dashboard-total-credits {
+  font-size: 1.15rem;
+  color: var(--gray-med);
+  text-align: center;
+}
 .dashboard-topbar-actions {
   display: flex;
-  gap: 1rem;                  /* space between each button */
-  align-items: center;
-}
-
-/* ─── Greeting ───────────────────────────────────────────────────────────── */
-.dashboard-greeting {
-  display: flex;
-  align-items: center;
   gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-.icon-large {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: #555;
-}
-.dashboard-greeting h2 {
-  font-size: 2rem;
-  font-weight: 600;
-}
-.dashboard-greeting .id {
-  color: #6B7280;
-  font-size: 1rem;
-  font-weight: 400;
+  justify-content: flex-end;
 }
 
-/* ─── Total Credits Text ─────────────────────────────────────────────────── */
-.dashboard-total-credits {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Back-button (Unified)                                                        */
+/* ───────────────────────────────────────────────────────────────────────────── */
+.back-button {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.95rem;
+  background: var(--gray-dark);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
-.dashboard-total-credits strong {
-  font-weight: 700;
-  margin-left: 0.5rem;
+.back-button:hover {
+  background: #4B5563;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ─── Section Headings ───────────────────────────────────────────────────── */
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Section Wrapper Card                                                         */
+/* ───────────────────────────────────────────────────────────────────────────── */
+.section-card {
+  background: var(--section-bg);
+  border: 1px solid var(--section-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--section-shadow);
+  padding: 2rem;
+  margin: 1rem 0 2rem;
+  text-align: center;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Section Headings                                                             */
+/* ───────────────────────────────────────────────────────────────────────────── */
 .dashboard-section-title {
-  font-size: 1.375rem;
+  font-size: 1.375rem;      /* ← updated */
   font-weight: 600;
-  margin: 2rem 0 1rem;
+  line-height: 1.5;
+  margin: .5rem 0 1rem;
   position: relative;
+  text-align: left;
 }
 .dashboard-section-title::after {
   content: '';
   position: absolute;
-  left: 0; bottom: 0;
-  width: 3rem; height: 4px;
-  background: #10B981;
+  left: 0;
+  bottom: 0;                /* ← updated */
+  width: 5rem;
+  height: 4px;
+  background: var(--green);
   border-radius: 2px;
+  transform: none;
 }
 
-/* ─── Sales Credits Parent Card ───────────────────────────────────────────── */
-.sales-credits-parent-card {
-  background: #f3f4f6;       /* light gray background */
-  border: 1px solid #e5e7eb; /* subtle border to lift the card */
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  width: 100%;
-  margin: 0 0 2rem;
-  padding: 2rem 1.5rem;
-}
-
-/* ─── Sales Credits Grid ──────────────────────────────────────────────────── */
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Sales Credits Grid                                                           */
+/* ───────────────────────────────────────────────────────────────────────────── */
 .sales-credits-grid {
   display: grid;
   grid-template-columns: auto repeat(3, 1fr);
   gap: 1rem;
   align-items: center;
+  justify-items: center;
 }
 .empty-cell {}
-
-/* Column headers */
 .sales-credits-header {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #6B7280;
+  font-size: 0.875rem;      /* ← updated */
+  font-weight: 600;         /* ← updated */
+  color: #6B7280;           /* ← updated */
   text-align: center;
 }
-
-/* Row titles */
 .sales-credits-row-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #111827;
-  text-align: right;
+  font-size: 0.875rem;      /* ← updated */
+  font-weight: 600;         /* ← updated */
+  color: #111827;           /* ← updated */
+  text-align: right;        /* ← updated */
 }
 
-/* Mini-card for each cell */
-.sales-credit-cell-card {
-  background: #f9fafb;
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Metric Card Styling & Hover                                                  */
+/* ───────────────────────────────────────────────────────────────────────────── */
+.sales-credit-cell-card,
+.dashboard-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
   padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  text-align: center;
-
-  /* your fixed width */
-  width: 17rem;
-
-  /* center it in the grid cell */
-  justify-self: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--inner-card-width);
+}
+.sales-credit-cell-card:hover,
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
 }
 
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Number Emphasis                                                              */
+/* ───────────────────────────────────────────────────────────────────────────── */
 .sales-card-amount {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111827;
+  font-size: 1.5rem;        /* ← updated */
+  font-weight: 700;         /* ← updated */
+  color: #111827;           /* ← updated */
 }
 .sales-card-count {
-  font-size: 1rem;
-  color: #6B7280;
+  font-size: 1rem;          /* ← updated */
+  color: #6B7280;           /* ← updated */
   margin-top: 0.25rem;
 }
+.dashboard-card-title {
+  font-size: 0.75rem;       /* ← updated */
+  font-weight: 600;         /* ← updated */
+  text-transform: uppercase;
+  color: #6B7280;           /* ← updated */
+  margin: 0.5rem 0;         /* ← updated */
+}
+.dashboard-card-value {
+  font-size: 1.875rem;      /* ← updated */
+  font-weight: 700;         /* ← updated */
+  color: #111827;           /* ← updated */
+}
+/* Prefix every amount with $ */
+.sales-card-amount::before,
+.dashboard-card-value::before {
+  content: '$';
+  margin-right: 0.25rem;
+}
 
-/* ─── Performance Grid & Cards ───────────────────────────────────────────── */
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Performance Grid                                                             */
+/* ───────────────────────────────────────────────────────────────────────────── */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1rem;
   justify-items: center;
 }
-.dashboard-card {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 1.5rem;
-  max-width: 300px;
-  width: 100%;
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.dashboard-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-.icon {
-  color: #6B7280;
-}
-.dashboard-card-title {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #6B7280;
-  margin: 0.5rem 0;
-}
-.dashboard-card-value {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #111827;
-}
 
-/* ─── Action Buttons ─────────────────────────────────────────────────────── */
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Action Buttons                                                               */
+/* ───────────────────────────────────────────────────────────────────────────── */
 .dashboard-button {
   padding: 0.5rem 1.25rem;
   font-size: 1rem;
@@ -177,7 +227,7 @@
   transition: background 0.2s;
 }
 .dashboard-button.calculator {
-  background: #10B981;
+  background: var(--green);
 }
 .dashboard-button.calculator:hover {
   background: #059669;
@@ -189,7 +239,10 @@
   background: #2563EB;
 }
 
-/* ─── Override Logout (so it sits in the topbar group) ───────────────────── */
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* Logout Button Inline                                                          */
+/* ───────────────────────────────────────────────────────────────────────────── */
 .logout-button {
   position: static !important;
+  margin: 0 !important;
 }

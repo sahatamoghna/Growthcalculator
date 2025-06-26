@@ -1,4 +1,3 @@
-// src/pages/RefereePerformance.jsx
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LogoutButton from '../components/LogoutButton'
@@ -16,8 +15,8 @@ export default function RefereePerformance({ user, onLogout }) {
     nav('/', { replace:true })
     return null
   }
-  const data     = refereeDataMap[user.username] || defaultRefereeData
-  const months   = Array.from(new Set(data.data.map(r=>r.signUpMonth)))
+  const data   = refereeDataMap[user.username] || defaultRefereeData
+  const months = Array.from(new Set(data.data.map(r=>r.signUpMonth)))
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState([])
 
@@ -30,9 +29,11 @@ export default function RefereePerformance({ user, onLogout }) {
         </div>
         <div className="referee-topbar-actions">
           <button
+            className="back-button"
             onClick={()=>nav(-1)}
-            className="referee-backbtn"
-          >← Back</button>
+          >
+            ← Back
+          </button>
           <LogoutButton onLogout={onLogout}/>
         </div>
       </div>
