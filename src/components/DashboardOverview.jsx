@@ -1,3 +1,4 @@
+// src/components/DashboardOverview.jsx
 import React from 'react'
 import '../styles/dashboard.css'
 import {
@@ -32,7 +33,6 @@ export default function DashboardOverview({ metrics }) {
 
   return (
     <div className="dashboard-overview">
-      {/* 8. Headings moved outside cards, with margins */}
       <h3 className="dashboard-section-title">Last Month Sales Credits</h3>
       <section className="section-card">
         <div className="sales-credits-grid">
