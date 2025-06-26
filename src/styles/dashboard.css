@@ -45,6 +45,9 @@
 .dashboard-total-credits {
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
+
+  /* align it under the “Hello” text (icon is 2.5rem + 1rem gap) */
+  margin-left: calc(2.5rem + 1rem);
 }
 .dashboard-total-credits strong {
   font-weight: 700;
