@@ -70,6 +70,15 @@ body {
   justify-content: flex-end;
 }
 
+/* ─── Total Credits Text ─────────────────────────────────────────────────── */
+.dashboard-total-credits {
+  font-size: 1.25rem;                   /* from remote */
+  color: var(--gray-med);               /* preserve your color */
+  text-align: center;                   /* preserve your centering */
+  margin-bottom: 1.5rem;                /* from remote */
+  margin-left: calc(2.5rem + 1rem);     /* from remote */
+}
+
 /* ───────────────────────────────────────────────────────────────────────────── */
 /* Back-button (Unified)                                                        */
 /* ───────────────────────────────────────────────────────────────────────────── */
@@ -82,6 +91,11 @@ body {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.back-button:hover {
+  background: #4B5563;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .back-button:hover {
   background: #4B5563;
