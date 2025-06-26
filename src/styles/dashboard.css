@@ -1,17 +1,22 @@
 /* ─── Overview Container ─────────────────────────────────────────────────── */
 .dashboard-overview {
-  padding: 1rem 2rem 4rem; /* pull up from top, extra bottom space */
+  padding: 0rem 3rem 2rem; /* pull up from top, extra bottom space */
 }
 
-/* ─── Top-bar (Buttons + Logout) ────────────────────────────────────────── */
 .dashboard-topbar {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
   display: flex;
-  gap: 0.75rem;
+  justify-content: flex-end;  /* push everything to the right */
   align-items: center;
-  z-index: 1001;
+  position: static;           /* scrolls away with the page */
+  width: 100%;
+  margin: 1rem 0 0;           /* 2rem top, 0 bottom */
+  padding: 0.5rem 2rem;       /* some breathing room inside */
+}
+
+.dashboard-topbar-actions {
+  display: flex;
+  gap: 1rem;                  /* space between each button */
+  align-items: center;
 }
 
 /* ─── Greeting ───────────────────────────────────────────────────────────── */
@@ -64,7 +69,8 @@
 
 /* ─── Sales Credits Parent Card ───────────────────────────────────────────── */
 .sales-credits-parent-card {
-  background: #fff;
+  background: #f3f4f6;       /* light gray background */
+  border: 1px solid #e5e7eb; /* subtle border to lift the card */
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   width: 100%;
@@ -104,7 +110,14 @@
   padding: 1rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   text-align: center;
+
+  /* your fixed width */
+  width: 17rem;
+
+  /* center it in the grid cell */
+  justify-self: center;
 }
+
 .sales-card-amount {
   font-size: 1.5rem;
   font-weight: 700;

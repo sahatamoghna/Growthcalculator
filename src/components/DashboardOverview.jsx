@@ -53,7 +53,7 @@ export default function DashboardOverview({ user, metrics }) {
         Total Credits:<strong> ${totalCredits.toLocaleString()}</strong>
       </div>
 
-      {/* Last Month Sales Credits (2×3) */}
+      {/* Last Month Sales Credits */}
       <h3 className="dashboard-section-title">Last Month Sales Credits</h3>
       <div className="sales-credits-parent-card">
         <div className="sales-credits-grid">
@@ -118,60 +118,64 @@ export default function DashboardOverview({ user, metrics }) {
 
       {/* Last Month Performance */}
       <h3 className="dashboard-section-title">Last Month Performance</h3>
-      <div className="dashboard-grid">
-        {[
-          {
-            icon: <UserPlus className="icon"/>,
-            title: 'New Customer Sign-ups',
-            value: metrics.newCustomerSignups
-          },
-          {
-            icon: <DollarSign className="icon"/>,
-            title: 'Remittance by New Customers',
-            value: `$${metrics.remittedByNewCustomers.toLocaleString()}`
-          },
-          {
-            icon: <BarChart2 className="icon"/>,
-            title: 'Total Customer Remittance',
-            value: `$${metrics.totalRemittedPrevMonth.toLocaleString()}`
-          }
-        ].map((c, i) => (
-          <div key={i} className="dashboard-card">
-            <div className="dashboard-card-icon">{c.icon}</div>
-            <div className="dashboard-card-title">{c.title}</div>
-            <div className="dashboard-card-value">{c.value}</div>
-          </div>
-        ))}
+      <div className="sales-credits-parent-card">
+        <div className="dashboard-grid">
+          {[
+            {
+              icon: <UserPlus className="icon"/>,
+              title: 'New Customer Sign-ups',
+              value: metrics.newCustomerSignups
+            },
+            {
+              icon: <DollarSign className="icon"/>,
+              title: 'Remittance by New Customers',
+              value: `$${metrics.remittedByNewCustomers.toLocaleString()}`
+            },
+            {
+              icon: <BarChart2 className="icon"/>,
+              title: 'Total Customer Remittance',
+              value: `$${metrics.totalRemittedPrevMonth.toLocaleString()}`
+            }
+          ].map((c, i) => (
+            <div key={i} className="dashboard-card">
+              <div className="dashboard-card-icon">{c.icon}</div>
+              <div className="dashboard-card-title">{c.title}</div>
+              <div className="dashboard-card-value">{c.value}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Year-to-Last-Month Performance */}
       <h3 className="dashboard-section-title">
         Year-to-Last-Month Performance
       </h3>
-      <div className="dashboard-grid">
-        {[
-          {
-            icon: <Users className="icon"/>,
-            title: 'Customer Sign-ups',
-            value: metrics.totalCustomerSignups
-          },
-          {
-            icon: <TrendingUp className="icon"/>,
-            title: 'Remittance by New Customers',
-            value: `$${metrics.totalRemittedByNewCustomers.toLocaleString()}`
-          },
-          {
-            icon: <DollarSign className="icon"/>,
-            title: 'Total Customer Remittance',
-            value: `$${metrics.totalRemittedAllCustomers.toLocaleString()}`
-          }
-        ].map((c, i) => (
-          <div key={i} className="dashboard-card">
-            <div className="dashboard-card-icon">{c.icon}</div>
-            <div className="dashboard-card-title">{c.title}</div>
-            <div className="dashboard-card-value">{c.value}</div>
-          </div>
-        ))}
+      <div className="sales-credits-parent-card">
+        <div className="dashboard-grid">
+          {[
+            {
+              icon: <Users className="icon"/>,
+              title: 'Customer Sign-ups',
+              value: metrics.totalCustomerSignups
+            },
+            {
+              icon: <TrendingUp className="icon"/>,
+              title: 'Remittance by New Customers',
+              value: `$${metrics.totalRemittedByNewCustomers.toLocaleString()}`
+            },
+            {
+              icon: <DollarSign className="icon"/>,
+              title: 'Total Customer Remittance',
+              value: `$${metrics.totalRemittedAllCustomers.toLocaleString()}`
+            }
+          ].map((c, i) => (
+            <div key={i} className="dashboard-card">
+              <div className="dashboard-card-icon">{c.icon}</div>
+              <div className="dashboard-card-title">{c.title}</div>
+              <div className="dashboard-card-value">{c.value}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

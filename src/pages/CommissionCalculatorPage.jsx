@@ -1,3 +1,4 @@
+// src/pages/CommissionCalculatorPage.jsx
 import React from 'react'
 import { useNavigate, useParams, Navigate } from 'react-router-dom'
 import CommissionCalculator from '../components/CommissionCalculator'
@@ -15,13 +16,15 @@ export default function CommissionCalculatorPage({ user, onLogout }) {
   return (
     <>
       <div className="dashboard-topbar">
-        <button
-          className="dashboard-button calculator"
-          onClick={() => navigate(-1)}
-        >
-          ← Back
-        </button>
-        <LogoutButton onLogout={onLogout} />
+        <div className="dashboard-topbar-actions">
+          <button
+            className="dashboard-button calculator"
+            onClick={() => navigate(-1)}
+          >
+            ← Back
+          </button>
+          <LogoutButton onLogout={onLogout} />
+        </div>
       </div>
       <div className="commission-page" style={{ paddingTop: '4rem' }}>
         <CommissionCalculator />
