@@ -1,48 +1,55 @@
-// src/pages/Dashboard.jsx
-import React, { useState } from 'react'
+import React from 'react'
 import { useParams, Navigate, useNavigate } from 'react-router-dom'
 
-import AdminPage            from './AdminPage'
-import CommissionCalculator from '../components/CommissionCalculator'
-import LogoutButton         from '../components/LogoutButton'
-import DashboardOverview    from '../components/DashboardOverview'
+import AdminPage from './AdminPage'
+import DashboardOverview from '../components/DashboardOverview'
+import LogoutButton from '../components/LogoutButton'
 import { userMetrics, defaultMetrics } from '../data/metrics'
 
 export default function Dashboard({ user, onLogout }) {
   const { username } = useParams()
   const navigate = useNavigate()
-  const [showCalculator, setShowCalculator] = useState(false)
 
-  // If not logged in or URL mismatch, go to login
+  // guard
   if (!user || user.username !== username) {
     return <Navigate to="/" replace />
   }
 
-  // If admin logs in, show under‐construction page
+  // admin sees construction
   if (user.role === 'ADMIN') {
     return <AdminPage user={user} />
   }
 
-  // Otherwise, show normal dashboard for BDA/BDM
   const metrics = userMetrics[username] || defaultMetrics
 
   return (
     <>
-      <LogoutButton onLogout={onLogout} />
+      {/* fixed top bar */}
+      <div className="dashboard-topbar">
+        <button
+          className="dashboard-button calculator"
+          onClick={() =>
+            navigate(`/dashboard/${username}/calculator`)
+          }
+        >
+          Commission Calculator
+        </button>
+        <button
+          className="dashboard-button referee"
+          onClick={() => navigate('/referee-performance')}
+        >
+          Referee Performance
+        </button>
+        <LogoutButton onLogout={onLogout} />
+      </div>
 
-      <DashboardOverview
-        user={user}
-        metrics={metrics}
-        showCalculator={showCalculator}
-        onShowCalculator={() => setShowCalculator(prev => !prev)}
-        onShowReferee={() => navigate('/referee-performance')}
-      />
-
-      {showCalculator && (
-        <div className="px-6 pb-8">
-          <CommissionCalculator />
-        </div>
-      )}
+      {/* push content below bar */}
+      <div style={{ paddingTop: '4rem' }}>
+        <DashboardOverview
+          user={user}
+          metrics={metrics}
+        />
+      </div>
     </>
   )
 }
