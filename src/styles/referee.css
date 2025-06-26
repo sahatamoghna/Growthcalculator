@@ -175,3 +175,49 @@
 
 /* Zebra striping */
 .report-table tr:nth-child(even) { background:#fbfbfb; }
+
+/* ─── Ensure scrolling cells stay beneath frozen columns ────────────────── */
+
+/* All table cells default to a low z-index */
+.report-table th,
+.report-table td {
+  position: relative;
+  z-index: 1;
+}
+
+/* Raise sticky columns above everything else and give them an opaque bg */
+.sticky-col-1,
+.report-table td.sticky-col-1,
+.sticky-col-2,
+.report-table td.sticky-col-2 {
+  position: sticky; /* already sticky, just reaffirm */
+  z-index: 10 !important;
+  background-color: #ffffff;
+}
+
+/* ─── Freeze the first two header columns on vertical scroll ───────────────── */
+.report-table thead .sticky-col-1,
+.report-table thead .sticky-col-2 {
+  position: sticky;
+  top: 0;
+  z-index: 12;               /* above the other headers */
+  background-color: #f7f7f7; /* same as your header bg */
+}
+
+/* ─── Freeze the first-two header columns vertically ───────────────────────── */
+.report-table thead .sticky-col-1,
+.report-table thead .sticky-col-2 {
+  position: sticky;   /* reaffirm sticky */
+  top: 0;             /* stick at top */
+  z-index: 10;        /* above other header cells */
+  background-color: #f7f7f7; /* match your header bg */
+}
+
+/* ─── Freeze the Remitter ID & Sign-up Month headers on vertical scroll ─── */
+.report-table thead th.sticky-col-1,
+.report-table thead th.sticky-col-2 {
+  position: sticky;
+  top: 0;
+  z-index: 20 !important;            /* sit above other headers */
+  background-color: #f7f7f7 !important;  /* match your header row BG */
+}
